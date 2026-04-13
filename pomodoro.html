@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learny - Pomodoro</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- jsPDF & AutoTable for Professional PDF Export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">L</div>
+        <span class="sidebar-title">Learny</span>
+      </div>
+      <ul class="nav-list">
+        <li class="nav-item"><a href="index.html"><i class="fa fa-home"></i> Dashboard</a></li>
+        <li class="nav-item"><a href="assistant.html"><i class="fa fa-robot"></i> Assistant</a></li>
+        <li class="nav-item"><a href="tasks.html"><i class="fa fa-tasks"></i> Tasks</a></li>
+        <li class="nav-item"><a href="time.html"><i class="fa fa-clock"></i> Time Tracker</a></li>
+        <li class="nav-item"><a href="achievements.html"><i class="fa fa-trophy"></i> Achievements</a></li>
+        <li class="nav-item"><a href="motivation.html"><i class="fa fa-quote-right"></i> Motivation</a></li>
+        <li class="nav-item"><a href="music.html"><i class="fa fa-music"></i> Music</a></li>
+        <li class="nav-item active"><a href="pomodoro.html"><i class="fa fa-hourglass-half"></i> Pomodoro</a></li>
+        <li class="nav-item"><a href="mark.html"><i class="fa fa-chart-line"></i> Mark Analyze</a></li>
+        <li class="nav-item"><a href="pastpapers.html"><i class="fa fa-file-alt"></i> Past Papers</a></li>
+        <li class="nav-item"><a href="countdown.html"><i class="fa fa-calendar-alt"></i> Countdown</a></li>
+        <li class="nav-item"><a href="settings.html"><i class="fa fa-cog"></i> Settings</a></li>
+        <li class="nav-item"><a href="contact.html"><i class="fa fa-envelope"></i> Contact</a></li>
+        <li class="nav-item"><a href="rate.html"><i class="fa fa-star"></i> Rate Us</a></li>
+      </ul>
+      <div class="sidebar-welcome">
+        <p class="welcome-text">Welcome!</p>
+        <p>Stay focused & keep learning</p>
+        <div class="divider"></div>
+      </div>
+    </aside>
+    <div class="overlay" id="overlay"></div>
+
+    <main class="main-content">
+      <header class="page-header">
+        <div class="flex items-center gap-2">
+          <button class="hamburger" id="hamburger"><i class="fa fa-bars"></i></button>
+          <h1 class="page-title"><i class="fa fa-hourglass-half"></i> Pomodoro Timer</h1>
+        </div>
+        <div class="header-actions">
+          <button class="theme-toggle" title="Toggle Theme"><i class="fa fa-moon"></i></button>
+        </div>
+      </header>
+
+      <div class="grid-equal">
+        <div class="card pomodoro-main">
+          <div class="pomodoro-modes">
+            <button class="mode-btn active" data-mode="work">Focus</button>
+            <button class="mode-btn" data-mode="shortBreak">Short Break</button>
+            <button class="mode-btn" data-mode="longBreak">Long Break</button>
+          </div>
+          <div class="pomodoro-display">
+            <span id="pomo-min">25</span>:<span id="pomo-sec">00</span>
+          </div>
+          <div class="pomodoro-status" id="pomo-status">Ready to Focus</div>
+          <div class="pomodoro-controls">
+            <button id="pomo-start" class="btn btn-primary"><i class="fa fa-play"></i> Start</button>
+            <button id="pomo-pause" class="btn btn-secondary hidden"><i class="fa fa-pause"></i> Pause</button>
+            <button id="pomo-stop" class="btn btn-danger"><i class="fa fa-stop"></i> Stop</button>
+            <button id="pomo-fullscreen" class="btn btn-info" title="Fullscreen"><i class="fa fa-expand"></i></button>
+            <button id="pomo-minimize" class="btn btn-secondary" title="Minimize"><i class="fa fa-compress"></i></button>
+          </div>
+          <div class="session-count">
+            <i class="fa fa-check-circle"></i> Completed Sessions: <span id="session-count-display">0</span> / <span id="long-break-target">4</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title"><i class="fa fa-sliders-h"></i> Customize Duration</h3>
+          </div>
+          <div class="form-group">
+            <label>Focus (min)</label>
+            <input type="number" id="set-work" class="form-control" value="25" min="1" max="120">
+          </div>
+          <div class="form-group">
+            <label>Short Break (min)</label>
+            <input type="number" id="set-short" class="form-control" value="5" min="1" max="30">
+          </div>
+          <div class="form-group">
+            <label>Long Break (min)</label>
+            <input type="number" id="set-long" class="form-control" value="15" min="1" max="60">
+          </div>
+          <button id="save-settings" class="btn btn-primary w-full">Save Settings</button>
+        </div>
+      </div>
+
+      <div class="card mt-3">
+        <div class="card-header flex justify-between items-center">
+          <h3 class="card-title"><i class="fa fa-history"></i> Recent Sessions</h3>
+          <button id="export-pdf" class="btn btn-success btn-sm"><i class="fa fa-file-pdf"></i> Export PDF</button>
+        </div>
+        <div id="pomo-sessions-list" class="task-list"></div>
+      </div>
+
+      <footer class="site-footer">
+        Powered by <a href="contact.html">DC</a> | Made in Sri Lanka 🇱🇰
+      </footer>
+    </main>
+  </div>
+
+  <div id="notification-toast" class="notification"><i class="fa fa-bell"></i><span></span></div>
+  <script src="script.js"></script>
+</body>
+</html>
