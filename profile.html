@@ -8,107 +8,113 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="overlay"></div>
     <div class="app-container">
         <aside class="sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-logo">L</div>
                 <div class="sidebar-title">Learny</div>
             </div>
-            <ul class="nav-list">
-                <li class="nav-item"><a href="index.html"><i class="fa fa-home"></i> Dashboard</a></li>
-                <li class="nav-item active"><a href="profile.html"><i class="fa fa-user"></i> Profile</a></li>
-                <li class="nav-item"><a href="assistant.html"><i class="fa fa-robot"></i> Assistant</a></li>
-                <li class="nav-item"><a href="tasks.html"><i class="fa fa-tasks"></i> Tasks</a></li>
-                <li class="nav-item"><a href="time.html"><i class="fa fa-clock"></i> Time Tracker</a></li>
-                <li class="nav-item"><a href="achievements.html"><i class="fa fa-trophy"></i> Achievements</a></li>
-                <li class="nav-item"><a href="motivation.html"><i class="fa fa-quote-left"></i> Motivation</a></li>
-                <li class="nav-item"><a href="music.html"><i class="fa fa-music"></i> Music</a></li>
-                <li class="nav-item"><a href="pomodoro.html"><i class="fa fa-stopwatch"></i> Pomodoro</a></li>
-                <li class="nav-item"><a href="mark.html"><i class="fa fa-chart-line"></i> Mark Analyze</a></li>
-                <li class="nav-item"><a href="pastpapers.html"><i class="fa fa-file-alt"></i> Past Papers</a></li>
-                <li class="nav-item"><a href="countdown.html"><i class="fa fa-hourglass-half"></i> Countdown</a></li>
-                <li class="nav-item"><a href="settings.html"><i class="fa fa-cog"></i> Settings</a></li>
-                <li class="nav-item"><a href="contact.html"><i class="fa fa-envelope"></i> Contact</a></li>
-                <li class="nav-item"><a href="rate.html"><i class="fa fa-star"></i> Rate Us</a></li>
-            </ul>
+            <nav>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html"><i class="fa fa-home"></i> Dashboard</a></li>
+                    <li class="nav-item active"><a href="profile.html"><i class="fa fa-user"></i> Profile</a></li>
+                    <li class="nav-item"><a href="assistant.html"><i class="fa fa-robot"></i> Assistant</a></li>
+                    <li class="nav-item"><a href="tasks.html"><i class="fa fa-tasks"></i> Tasks</a></li>
+                    <li class="nav-item"><a href="time.html"><i class="fa fa-clock"></i> Time Tracker</a></li>
+                    <li class="nav-item"><a href="achievements.html"><i class="fa fa-trophy"></i> Achievements</a></li>
+                    <li class="nav-item"><a href="motivation.html"><i class="fa fa-lightbulb"></i> Motivation</a></li>
+                    <li class="nav-item"><a href="music.html"><i class="fa fa-music"></i> Music</a></li>
+                    <li class="nav-item"><a href="pomodoro.html"><i class="fa fa-stopwatch"></i> Pomodoro</a></li>
+                    <li class="nav-item"><a href="mark.html"><i class="fa fa-chart-line"></i> Mark Analyze</a></li>
+                    <li class="nav-item"><a href="pastpapers.html"><i class="fa fa-file-alt"></i> Past Papers</a></li>
+                    <li class="nav-item"><a href="countdown.html"><i class="fa fa-hourglass-half"></i> Countdown</a></li>
+                    <li class="nav-item"><a href="settings.html"><i class="fa fa-cog"></i> Settings</a></li>
+                    <li class="nav-item"><a href="contact.html"><i class="fa fa-envelope"></i> Contact</a></li>
+                    <li class="nav-item"><a href="rate.html"><i class="fa fa-star"></i> Rate Us</a></li>
+                </ul>
+            </nav>
             <div class="sidebar-welcome">
-                <p>Welcome, <span id="sidebar-username">User</span>!</p>
-                <div class="welcome-text">Stay focused & keep learning ✨</div>
-                <div class="divider"></div>
+                <p id="sidebar-username">Welcome, User!</p>
+                <div class="sidebar-divider"></div>
+                <p>Stay focused & keep learning ✨</p>
             </div>
         </aside>
 
         <main class="main-content">
-            <div class="page-header">
+            <header class="page-header">
                 <h1 class="page-title"><i class="fa fa-user-circle"></i> My Profile</h1>
                 <div class="header-actions">
-                    <button class="theme-toggle"><i class="fa fa-moon"></i></button>
-                    <button class="notif-btn"><i class="fa fa-bell"></i></button>
+                    <button class="theme-toggle" onclick="APP.toggleTheme()">
+                        <i class="fa fa-moon"></i>
+                    </button>
                 </div>
-            </div>
+            </header>
 
             <div class="profile-container">
                 <div class="card mb-3">
                     <div class="card-header">
                         <h2 class="card-title"><i class="fa fa-images"></i> Choose Your Avatar</h2>
+                        <button class="btn btn-sm btn-primary premium-btn" onclick="showPremiumPopup()">
+                            <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="Premium" style="width:16px;height:16px;vertical-align:middle;margin-right:4px;">
+                            Unlock All Avatars
+                        </button>
                     </div>
                     <div class="avatar-grid">
-                        <div class="avatar-option selected" data-avatar="https://i.postimg.cc/QdPYLqrV/AIRetouch-20260412-135002012.png">
+                        <div class="avatar-option selected" data-avatar="https://i.postimg.cc/QdPYLqrV/AIRetouch-20260412-135002012.png" onclick="selectAvatar(this)">
                             <img src="https://i.postimg.cc/QdPYLqrV/AIRetouch-20260412-135002012.png" alt="Avatar 1">
                             <div class="avatar-check"><i class="fa fa-check"></i></div>
                         </div>
-                        <div class="avatar-option" data-avatar="https://i.postimg.cc/vmJKntqc/AIRetouch-20260412-134105556.png">
+                        <div class="avatar-option" data-avatar="https://i.postimg.cc/vmJKntqc/AIRetouch-20260412-134105556.png" onclick="selectAvatar(this)">
                             <img src="https://i.postimg.cc/vmJKntqc/AIRetouch-20260412-134105556.png" alt="Avatar 2">
                             <div class="avatar-check"><i class="fa fa-check"></i></div>
                         </div>
-                        <div class="avatar-option locked" data-avatar="https://i.postimg.cc/DyvM1Zgn/AIRetouch-20260412-134857396.png">
+                        <div class="avatar-option locked" onclick="showPremiumPopup()">
                             <img src="https://i.postimg.cc/DyvM1Zgn/AIRetouch-20260412-134857396.png" alt="Avatar 3">
-                            <div class="avatar-check"><i class="fa fa-check"></i></div>
+                            <div class="lock-overlay"><i class="fa fa-lock"></i></div>
                         </div>
-                        <div class="avatar-option locked" data-avatar="https://i.postimg.cc/CKqPwfhV/AIRetouch-20260412-134937423.png">
+                        <div class="avatar-option locked" onclick="showPremiumPopup()">
                             <img src="https://i.postimg.cc/CKqPwfhV/AIRetouch-20260412-134937423.png" alt="Avatar 4">
-                            <div class="avatar-check"><i class="fa fa-check"></i></div>
+                            <div class="lock-overlay"><i class="fa fa-lock"></i></div>
                         </div>
-                        <div class="avatar-option locked" data-avatar="https://i.postimg.cc/Twvk1Y1m/AIRetouch-20260412-140516089.png">
+                        <div class="avatar-option locked" onclick="showPremiumPopup()">
                             <img src="https://i.postimg.cc/Twvk1Y1m/AIRetouch-20260412-140516089.png" alt="Avatar 5">
-                            <div class="avatar-check"><i class="fa fa-check"></i></div>
+                            <div class="lock-overlay"><i class="fa fa-lock"></i></div>
                         </div>
-                        <div class="avatar-option locked" data-avatar="https://i.postimg.cc/SRDVg6rm/AIRetouch-20260412-140552262.png">
+                        <div class="avatar-option locked" onclick="showPremiumPopup()">
                             <img src="https://i.postimg.cc/SRDVg6rm/AIRetouch-20260412-140552262.png" alt="Avatar 6">
-                            <div class="avatar-check"><i class="fa fa-check"></i></div>
+                            <div class="lock-overlay"><i class="fa fa-lock"></i></div>
                         </div>
-                        <div class="avatar-option locked" data-avatar="https://i.postimg.cc/gcDMcpW0/AIRetouch-20260412-140700443.png">
+                        <div class="avatar-option locked" onclick="showPremiumPopup()">
                             <img src="https://i.postimg.cc/gcDMcpW0/AIRetouch-20260412-140700443.png" alt="Avatar 7">
-                            <div class="avatar-check"><i class="fa fa-check"></i></div>
+                            <div class="lock-overlay"><i class="fa fa-lock"></i></div>
                         </div>
-                        <div class="avatar-option locked" data-avatar="https://i.postimg.cc/TwB7j4Lm/AIRetouch-20260413-022006756.png">
+                        <div class="avatar-option locked" onclick="showPremiumPopup()">
                             <img src="https://i.postimg.cc/TwB7j4Lm/AIRetouch-20260413-022006756.png" alt="Avatar 8">
-                            <div class="avatar-check"><i class="fa fa-check"></i></div>
+                            <div class="lock-overlay"><i class="fa fa-lock"></i></div>
                         </div>
-                        <div class="avatar-option locked" data-avatar="https://i.postimg.cc/8krnkN95/AIRetouch-20260413-022021165.png">
+                        <div class="avatar-option locked" onclick="showPremiumPopup()">
                             <img src="https://i.postimg.cc/8krnkN95/AIRetouch-20260413-022021165.png" alt="Avatar 9">
-                            <div class="avatar-check"><i class="fa fa-check"></i></div>
+                            <div class="lock-overlay"><i class="fa fa-lock"></i></div>
                         </div>
-                        <div class="avatar-option locked" data-avatar="https://i.postimg.cc/TYMNpBvq/AIRetouch-20260413-022032646.png">
+                        <div class="avatar-option locked" onclick="showPremiumPopup()">
                             <img src="https://i.postimg.cc/TYMNpBvq/AIRetouch-20260413-022032646.png" alt="Avatar 10">
-                            <div class="avatar-check"><i class="fa fa-check"></i></div>
+                            <div class="lock-overlay"><i class="fa fa-lock"></i></div>
                         </div>
-                        <div class="avatar-option locked" data-avatar="https://i.postimg.cc/jSR8hN57/AIRetouch-20260413-022044951.png">
+                        <div class="avatar-option locked" onclick="showPremiumPopup()">
                             <img src="https://i.postimg.cc/jSR8hN57/AIRetouch-20260413-022044951.png" alt="Avatar 11">
-                            <div class="avatar-check"><i class="fa fa-check"></i></div>
+                            <div class="lock-overlay"><i class="fa fa-lock"></i></div>
                         </div>
-                        <div class="avatar-option locked" data-avatar="https://i.postimg.cc/FKRDM40b/AIRetouch-20260413-022119848.png">
+                        <div class="avatar-option locked" onclick="showPremiumPopup()">
                             <img src="https://i.postimg.cc/FKRDM40b/AIRetouch-20260413-022119848.png" alt="Avatar 12">
-                            <div class="avatar-check"><i class="fa fa-check"></i></div>
+                            <div class="lock-overlay"><i class="fa fa-lock"></i></div>
                         </div>
-                        <div class="avatar-option locked" data-avatar="https://i.postimg.cc/JzKpYnDv/AIRetouch-20260413-022108897.png">
+                        <div class="avatar-option locked" onclick="showPremiumPopup()">
                             <img src="https://i.postimg.cc/JzKpYnDv/AIRetouch-20260413-022108897.png" alt="Avatar 13">
-                            <div class="avatar-check"><i class="fa fa-check"></i></div>
+                            <div class="lock-overlay"><i class="fa fa-lock"></i></div>
                         </div>
-                        <div class="avatar-option locked" data-avatar="https://i.postimg.cc/5ycgQQTp/AIRetouch-20260413-022131038.png">
+                        <div class="avatar-option locked" onclick="showPremiumPopup()">
                             <img src="https://i.postimg.cc/5ycgQQTp/AIRetouch-20260413-022131038.png" alt="Avatar 14">
-                            <div class="avatar-check"><i class="fa fa-check"></i></div>
+                            <div class="lock-overlay"><i class="fa fa-lock"></i></div>
                         </div>
                     </div>
                 </div>
@@ -120,15 +126,13 @@
                     <form id="profile-form" class="profile-form">
                         <div class="form-group">
                             <label>Your Name</label>
-                            <input type="text" id="profile-name" class="form-control" placeholder="Enter your name" required>
+                            <input type="text" id="profile-name" class="form-control" placeholder="Enter your name" value="User">
                         </div>
                         
                         <div class="form-group">
                             <label>Greeting Subtext (max 30 chars)</label>
-                            <input type="text" id="profile-subtext" class="form-control" placeholder="Let's start learning 🎯" maxlength="30" readonly disabled>
-                            <small style="color: var(--text-muted); font-size: 11px; margin-top: 4px; display: block;">
-                                <i class="fa fa-lock"></i> This feature is locked. Upgrade to premium to customize.
-                            </small>
+                            <input type="text" id="profile-subtext" class="form-control" placeholder="Let's start learning 🎯" value="Let's start learning 🎯" maxlength="30" readonly style="background:var(--bg-dark);opacity:0.6;cursor:not-allowed;">
+                            <small style="color:var(--text-muted);margin-top:4px;display:block;"><i class="fa fa-lock" style="margin-right:4px;"></i>Locked - Premium feature to edit</small>
                         </div>
 
                         <div class="form-row">
@@ -143,13 +147,13 @@
                             </div>
                             <div class="form-group">
                                 <label>Age</label>
-                                <input type="number" id="profile-age" class="form-control" placeholder="Your age" min="1" max="120">
+                                <input type="number" id="profile-age" class="form-control" placeholder="Your age">
                             </div>
                         </div>
 
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save Profile</button>
-                            <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'"><i class="fa fa-times"></i> Cancel</button>
+                            <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">Cancel</button>
                         </div>
                     </form>
                 </div>
@@ -167,60 +171,75 @@
                     </div>
                 </div>
             </div>
-
-            <footer class="site-footer">
-                Powered by <a href="contact.html">DC</a> | Made in Sri Lanka 🇱🇰
-            </footer>
         </main>
     </div>
 
-    <!-- Premium Popup -->
-    <div class="premium-popup-overlay" id="premium-popup">
-        <div class="premium-popup">
-            <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="Premium" class="premium-popup-img">
-            <h2>Unlock Premium Features</h2>
-            <p>Get access to all avatars, customize your greeting, upload songs, and enjoy exclusive features!</p>
-            <a href="premium.html" class="btn btn-primary btn-lg">Upgrade Now</a>
+    <!-- Premium Popup Modal -->
+    <div id="premium-popup" class="modal-overlay" style="display:none;" onclick="closePremiumPopup(event)">
+        <div class="premium-popup-content" onclick="event.stopPropagation()">
+            <button class="close-popup" onclick="closePremiumPopup()">&times;</button>
+            <div class="premium-popup-header">
+                <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="Premium" class="premium-gem-icon">
+                <h2>Unlock Premium Features</h2>
+            </div>
+            <div class="premium-popup-body">
+                <p class="premium-subtext">Get unlimited access to all avatars, features, and exclusive content</p>
+                <ul class="premium-features-list">
+                    <li><i class="fa fa-check-circle"></i> Unlock all 14+ avatars</li>
+                    <li><i class="fa fa-check-circle"></i> Customize greeting subtext</li>
+                    <li><i class="fa fa-check-circle"></i> Upload unlimited songs</li>
+                    <li><i class="fa fa-check-circle"></i> Export data to PDF</li>
+                    <li><i class="fa fa-check-circle"></i> 24/7 Priority support</li>
+                    <li><i class="fa fa-check-circle"></i> Ad-free experience</li>
+                </ul>
+            </div>
+            <div class="premium-popup-footer">
+                <a href="premium.html" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;">
+                    <i class="fa fa-crown"></i> Go Premium Now
+                </a>
+            </div>
         </div>
     </div>
 
-    <div id="notification-toast" class="notification">
-        <i class="fa fa-check-circle"></i>
-        <span>Profile saved successfully!</span>
-    </div>
-
+    <div class="overlay" onclick="APP.closeSidebar()"></div>
     <script src="script.js"></script>
     <script>
-        // Premium features lock logic
-        document.addEventListener('DOMContentLoaded', function() {
-            const isPremium = localStorage.getItem('learny_premium') === 'true';
-            
-            if (!isPremium) {
-                // Lock avatars after first 2
-                document.querySelectorAll('.avatar-option').forEach((option, index) => {
-                    if (index >= 2) {
-                        option.classList.add('locked');
-                        option.addEventListener('click', function(e) {
-                            e.preventDefault();
-                            document.getElementById('premium-popup').classList.add('show');
-                        });
-                    }
-                });
-                
-                // Lock subtext field
-                const subtextInput = document.getElementById('profile-subtext');
-                subtextInput.addEventListener('click', function() {
-                    document.getElementById('premium-popup').classList.add('show');
-                });
+        // Premium feature functions
+        function showPremiumPopup() {
+            document.getElementById('premium-popup').style.display = 'flex';
+        }
+
+        function closePremiumPopup(event) {
+            if (!event || event.target.id === 'premium-popup' || event.target.className === 'close-popup') {
+                document.getElementById('premium-popup').style.display = 'none';
             }
-            
-            // Close popup on overlay click
-            document.querySelector('.premium-popup-overlay').addEventListener('click', function(e) {
-                if (e.target === this) {
-                    this.classList.remove('show');
-                }
+        }
+
+        function selectAvatar(element) {
+            if (element.classList.contains('locked')) {
+                showPremiumPopup();
+                return;
+            }
+            document.querySelectorAll('.avatar-option').forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            const avatarUrl = element.dataset.avatar;
+            document.getElementById('preview-avatar').src = avatarUrl;
+        }
+
+        // Check if premium
+        const isPremium = localStorage.getItem('learny_premium') === 'true';
+        
+        // If premium, unlock all avatars
+        if (isPremium) {
+            document.querySelectorAll('.avatar-option.locked').forEach(opt => {
+                opt.classList.remove('locked');
+                opt.onclick = function() { selectAvatar(this); };
+                opt.querySelector('.lock-overlay').remove();
             });
-        });
+            document.getElementById('profile-subtext').removeAttribute('readonly');
+            document.getElementById('profile-subtext').style.opacity = '1';
+            document.getElementById('profile-subtext').style.cursor = 'text';
+        }
     </script>
 </body>
 </html>
