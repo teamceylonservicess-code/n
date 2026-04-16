@@ -1,65 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Learny - Music</title>
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#6c2bd9">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learny - Music</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <div class="app-container">
-    <div class="overlay"></div>
-    <aside class="sidebar">
-      <div class="sidebar-header"><div class="sidebar-logo"><i class="fa fa-graduation-cap"></i></div><span class="sidebar-title">Learny</span></div>
-      <ul class="nav-list">
-        <li class="nav-item"><a href="index.html"><i class="fa fa-grip"></i> Dashboard</a></li>
-        <li class="nav-item"><a href="assistant.html"><i class="fa fa-robot"></i> Assistant</a></li>
-        <li class="nav-item"><a href="tasks.html"><i class="fa fa-check-circle"></i> Tasks</a></li>
-        <li class="nav-item"><a href="time.html"><i class="fa fa-clock"></i> Time Tracker</a></li>
-        <li class="nav-item"><a href="achievements.html"><i class="fa fa-trophy"></i> Achievements</a></li>
-        <li class="nav-item"><a href="motivation.html"><i class="fa fa-quote-left"></i> Motivation</a></li>
-        <li class="nav-item active"><a href="music.html"><i class="fa fa-music"></i> Music</a></li>
-        <li class="nav-item"><a href="pomodoro.html"><i class="fa fa-hourglass-half"></i> Pomodoro</a></li>
-        <li class="nav-item"><a href="mark.html"><i class="fa fa-chart-line"></i> Mark Analyze</a></li>
-        <li class="nav-item"><a href="pastpapers.html"><i class="fa fa-file-alt"></i> Past Papers</a></li>
-        <li class="nav-item"><a href="countdown.html"><i class="fa fa-calendar-day"></i> Countdown</a></li>
-        <li class="nav-item"><a href="settings.html"><i class="fa fa-cog"></i> Settings</a></li>
-        <li class="nav-item"><a href="contact.html"><i class="fa fa-envelope"></i> Contact</a></li>
-        <li class="nav-item"><a href="rate.html"><i class="fa fa-star"></i> Rate Us</a></li>
-      </ul>
-      <div class="sidebar-welcome"><p class="welcome-text">Welcome!</p><div class="divider"></div><p>Stay focused & keep learning</p></div>
-    </aside>
-    <main class="main-content">
-      <header class="page-header">
-        <button class="hamburger"><i class="fa fa-bars"></i></button>
-        <h1 class="page-title"><i class="fa fa-music"></i> Study Music</h1>
-        <div class="header-actions"><button class="theme-toggle" id="toggle-mode"><i class="fa fa-sun"></i></button></div>
-      </header>
-      <div id="notification-toast" class="notification"><i class="fa fa-check-circle"></i><span></span></div>
-      <div class="grid-2">
-        <div class="music-player">
-          <div class="album-art"><i class="fa fa-music"></i></div>
-          <p id="music-title" style="font-size:18px;font-weight:600;margin-bottom:4px">Relax 1</p>
-          <div class="time-display"><span id="music-current">0:00</span><span id="music-total">0:00</span></div>
-          <div class="progress-seek"><div class="progress-fill" id="music-progress"></div></div>
-          <div class="player-controls">
-            <button class="player-btn" onclick="APP.playTrack(APP.currentTrack > 0 ? APP.currentTrack - 1 : 0)"><i class="fa fa-backward"></i></button>
-            <button class="player-btn play-btn" id="play-pause-btn"><i class="fa fa-play"></i></button>
-            <button class="player-btn" onclick="APP.playTrack(APP.currentTrack < APP.playlist.length - 1 ? APP.currentTrack + 1 : 0)"><i class="fa fa-forward"></i></button>
-          </div>
-          <label class="btn btn-secondary mt-2"><i class="fa fa-upload"></i> Upload Song<input type="file" id="music-upload" accept="audio/*" hidden></label>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">L</div>
+                <div class="sidebar-title">Learny</div>
+            </div>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="index.html"><i class="fa fa-home"></i> Dashboard</a></li>
+                <li class="nav-item"><a href="profile.html"><i class="fa fa-user"></i> Profile</a></li>
+                <li class="nav-item"><a href="assistant.html"><i class="fa fa-robot"></i> Assistant</a></li>
+                <li class="nav-item"><a href="tasks.html"><i class="fa fa-tasks"></i> Tasks</a></li>
+                <li class="nav-item"><a href="time.html"><i class="fa fa-clock"></i> Time Tracker</a></li>
+                <li class="nav-item"><a href="achievements.html"><i class="fa fa-trophy"></i> Achievements</a></li>
+                <li class="nav-item"><a href="motivation.html"><i class="fa fa-quote-left"></i> Motivation</a></li>
+                <li class="nav-item active"><a href="music.html"><i class="fa fa-music"></i> Music</a></li>
+                <li class="nav-item"><a href="pomodoro.html"><i class="fa fa-stopwatch"></i> Pomodoro</a></li>
+                <li class="nav-item"><a href="mark.html"><i class="fa fa-chart-line"></i> Mark Analyze</a></li>
+                <li class="nav-item"><a href="pastpapers.html"><i class="fa fa-file-alt"></i> Past Papers</a></li>
+                <li class="nav-item"><a href="countdown.html"><i class="fa fa-calendar-alt"></i> Countdown</a></li>
+                <li class="nav-item"><a href="premium.html"><i class="fa fa-gem"></i> Premium</a></li>
+                <li class="nav-item"><a href="settings.html"><i class="fa fa-cog"></i> Settings</a></li>
+                <li class="nav-item"><a href="contact.html"><i class="fa fa-envelope"></i> Contact</a></li>
+                <li class="nav-item"><a href="rate.html"><i class="fa fa-star"></i> Rate Us</a></li>
+            </ul>
+            <div class="sidebar-welcome">
+                <p id="sidebar-username">Welcome!</p>
+                <p>Stay focused & keep learning</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1 class="page-title"><i class="fa fa-music"></i> Study Music</h1>
+                <button class="hamburger"><i class="fa fa-bars"></i></button>
+            </div>
+
+            <div class="grid-2">
+                <!-- Music Player -->
+                <div class="card">
+                    <div class="music-player">
+                        <div class="album-art">
+                            <i class="fa fa-music"></i>
+                        </div>
+                        <h3 id="music-title" style="margin-bottom: 8px;">Relax 1</h3>
+                        <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">Study Focus Mix</p>
+                        
+                        <div class="time-display">
+                            <span id="music-current">0:00</span>
+                            <span id="music-total">0:00</span>
+                        </div>
+                        
+                        <div class="progress-seek" id="music-progress-bar">
+                            <div class="progress-fill" id="music-progress"></div>
+                        </div>
+                        
+                        <div class="player-controls">
+                            <button class="player-btn" onclick="APP.prevTrack()">
+                                <i class="fa fa-step-backward"></i>
+                            </button>
+                            <button class="player-btn play-btn" id="play-pause-btn" onclick="APP.togglePlay()">
+                                <i class="fa fa-play"></i>
+                            </button>
+                            <button class="player-btn" onclick="APP.nextTrack()">
+                                <i class="fa fa-step-forward"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upload Section (Locked) -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title"><i class="fa fa-upload"></i> Upload Song</h2>
+                        <span style="background: var(--warning); color: #000; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700;">
+                            <i class="fa fa-lock"></i> PREMIUM
+                        </span>
+                    </div>
+                    <div style="text-align: center; padding: 40px 20px; background: var(--bg-dark); border-radius: var(--radius-sm); border: 2px dashed var(--border); cursor: not-allowed;" onclick="APP.showPremiumPopup('upload')">
+                        <i class="fa fa-lock" style="font-size: 48px; color: var(--warning); margin-bottom: 16px;"></i>
+                        <h3 style="margin-bottom: 8px; color: var(--text-main);">Upload Locked</h3>
+                        <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">Upgrade to premium to upload your own study music</p>
+                        <button class="btn btn-primary" onclick="APP.showPremiumPopup('upload'); event.stopPropagation();">
+                            <i class="fa fa-gem"></i> Upgrade to Premium
+                        </button>
+                    </div>
+                    <input type="file" id="music-upload" accept="audio/*" style="display: none;" disabled>
+                </div>
+            </div>
+
+            <!-- Playlist -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title"><i class="fa fa-list-music"></i> Playlist</h2>
+                    <span style="color: var(--text-muted); font-size: 13px;">5 songs available</span>
+                </div>
+                <div id="music-playlist" class="task-list">
+                    <!-- Playlist items will be rendered here -->
+                </div>
+            </div>
+
+            <footer class="site-footer">
+                <p>Powered by <a href="contact.html">DC</a> | Made in Sri Lanka 🇱</p>
+            </footer>
+        </main>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    
+    <!-- Premium Popup Modal -->
+    <div class="modal" id="premium-modal">
+        <div style="text-align: center;">
+            <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="Premium" style="width: 80px; height: 80px; margin-bottom: 16px;">
+            <h2 style="margin-bottom: 12px; color: var(--primary-light);">Premium Feature</h2>
+            <p id="premium-feature-text" style="color: var(--text-muted); margin-bottom: 20px; font-size: 14px;">Upload unlimited songs and create your perfect study playlist!</p>
+            <div style="display: flex; gap: 12px; justify-content: center;">
+                <button class="btn btn-secondary" onclick="APP.closePremiumPopup()">Later</button>
+                <a href="premium.html" class="btn btn-primary">Upgrade Now</a>
+            </div>
         </div>
-        <div class="card">
-          <div class="card-header"><span class="card-title"><i class="fa fa-list-ol"></i> Playlist</span></div>
-          <div id="music-playlist"></div>
-        </div>
-      </div>
-      <footer class="site-footer">Powered by <a href="contact.html">DC</a> | Made in Sri Lanka <i class="fa fa-heart" style="color:var(--danger)"></i></footer>
-    </main>
-  </div>
-  <script src="script.js"></script>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Premium popup functions
+        APP.showPremiumPopup = function(feature) {
+            const texts = {
+                'upload': 'Upload unlimited songs and create your perfect study playlist!',
+                'default': 'This feature is only available for premium members.'
+            };
+            document.getElementById('premium-feature-text').textContent = texts[feature] || texts.default;
+            document.getElementById('premium-modal').classList.add('show');
+            document.getElementById('overlay').classList.add('show');
+        };
+        
+        APP.closePremiumPopup = function() {
+            document.getElementById('premium-modal').classList.remove('show');
+            document.getElementById('overlay').classList.remove('show');
+        };
+        
+        // Close modal on overlay click
+        document.getElementById('overlay').addEventListener('click', APP.closePremiumPopup);
+        
+        // Music player functions
+        APP.audio = new Audio();
+        APP.playlist = [
+            { n: 'Relax 1', s: 'song1.mp3' },
+            { n: 'Relax 2', s: 'song2.mp3' },
+            { n: 'Relax 3', s: 'song3.mp3' },
+            { n: 'Relax 4', s: 'song4.mp3' },
+            { n: 'Relax 5', s: 'song5.mp3' }
+        ];
+        APP.track = 0;
+        APP.playing = false;
+        
+        APP.renderPlaylist = function() {
+            document.getElementById('music-playlist').innerHTML = APP.playlist.map((t, i) => `
+                <div class="playlist-item ${i === APP.track ? 'active' : ''}" onclick="APP.playTrack(${i})">
+                    <div class="playlist-num">${i + 1}</div>
+                    <div class="playlist-info">
+                        <div class="playlist-name">${t.n}</div>
+                        <div class="playlist-duration"><i class="fa fa-music"></i> Ready</div>
+                    </div>
+                    <i class="fa fa-play" style="color: var(--primary)"></i>
+                </div>
+            `).join('');
+        };
+        
+        APP.playTrack = function(i) {
+            APP.track = i;
+            // For demo, we'll just update UI
+            document.getElementById('music-title').textContent = APP.playlist[i].n;
+            APP.renderPlaylist();
+        };
+        
+        APP.togglePlay = function() {
+            APP.playing = !APP.playing;
+            const btn = document.getElementById('play-pause-btn');
+            btn.innerHTML = APP.playing ? '<i class="fa fa-pause"></i>' : '<i class="fa fa-play"></i>';
+        };
+        
+        APP.prevTrack = function() {
+            APP.track = (APP.track - 1 + APP.playlist.length) % APP.playlist.length;
+            APP.playTrack(APP.track);
+        };
+        
+        APP.nextTrack = function() {
+            APP.track = (APP.track + 1) % APP.playlist.length;
+            APP.playTrack(APP.track);
+        };
+        
+        // Initialize
+        APP.renderPlaylist();
+    </script>
 </body>
 </html>
