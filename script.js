@@ -755,3 +755,39 @@ const APP = {
 
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js').catch(() => {});
 document.addEventListener('DOMContentLoaded', () => APP.init());
+// Add these functions to the existing APP object in script.js
+
+// Premium popup function (global)
+APP.showPremiumPopup = function(feature) {
+    const modal = document.getElementById('premium-modal');
+    const overlay = document.getElementById('overlay');
+    if (modal && overlay) {
+        const texts = {
+            'avatar': 'Unlock all 14 premium avatars with your membership!',
+            'subtext': 'Customize your greeting subtext with premium access!',
+            'upload': 'Upload unlimited songs and create your perfect study playlist!',
+            'default': 'This feature is only available for premium members.'
+        };
+        const textEl = document.getElementById('premium-feature-text');
+        if (textEl) textEl.textContent = texts[feature] || texts.default;
+        modal.classList.add('show');
+        overlay.classList.add('show');
+    }
+};
+
+APP.closePremiumPopup = function() {
+    const modal = document.getElementById('premium-modal');
+    const overlay = document.getElementById('overlay');
+    if (modal && overlay) {
+        modal.classList.remove('show');
+        overlay.classList.remove('show');
+    }
+};
+
+// Initialize premium popup close on overlay click
+document.addEventListener('DOMContentLoaded', function() {
+    const overlay = document.getElementById('overlay');
+    if (overlay) {
+        overlay.addEventListener('click', APP.closePremiumPopup);
+    }
+});
