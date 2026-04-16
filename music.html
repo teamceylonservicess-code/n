@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <div class="overlay"></div>
     <div class="app-container">
-        <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-logo">L</div>
@@ -27,181 +27,136 @@
                 <li class="nav-item"><a href="pomodoro.html"><i class="fa fa-stopwatch"></i> Pomodoro</a></li>
                 <li class="nav-item"><a href="mark.html"><i class="fa fa-chart-line"></i> Mark Analyze</a></li>
                 <li class="nav-item"><a href="pastpapers.html"><i class="fa fa-file-alt"></i> Past Papers</a></li>
-                <li class="nav-item"><a href="countdown.html"><i class="fa fa-calendar-alt"></i> Countdown</a></li>
-                <li class="nav-item"><a href="premium.html"><i class="fa fa-gem"></i> Premium</a></li>
+                <li class="nav-item"><a href="countdown.html"><i class="fa fa-hourglass-half"></i> Countdown</a></li>
                 <li class="nav-item"><a href="settings.html"><i class="fa fa-cog"></i> Settings</a></li>
                 <li class="nav-item"><a href="contact.html"><i class="fa fa-envelope"></i> Contact</a></li>
                 <li class="nav-item"><a href="rate.html"><i class="fa fa-star"></i> Rate Us</a></li>
             </ul>
             <div class="sidebar-welcome">
-                <p id="sidebar-username">Welcome!</p>
-                <p>Stay focused & keep learning</p>
+                <p>Welcome, <span id="sidebar-username">User</span>!</p>
+                <div class="welcome-text">Stay focused & keep learning ✨</div>
+                <div class="divider"></div>
             </div>
         </aside>
 
-        <!-- Main Content -->
         <main class="main-content">
             <div class="page-header">
                 <h1 class="page-title"><i class="fa fa-music"></i> Study Music</h1>
-                <button class="hamburger"><i class="fa fa-bars"></i></button>
+                <div class="header-actions">
+                    <button class="premium-gem-btn" id="premium-gem-music" title="Upgrade to Premium">
+                        <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="Premium">
+                    </button>
+                    <button class="theme-toggle"><i class="fa fa-moon"></i></button>
+                    <button class="notif-btn"><i class="fa fa-bell"></i></button>
+                </div>
             </div>
 
             <div class="grid-2">
-                <!-- Music Player -->
                 <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title"><i class="fa fa-headphones"></i> Now Playing</h2>
+                        <span class="premium-badge">
+                            <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="Premium">
+                            Premium
+                        </span>
+                    </div>
                     <div class="music-player">
                         <div class="album-art">
                             <i class="fa fa-music"></i>
                         </div>
                         <h3 id="music-title" style="margin-bottom: 8px;">Relax 1</h3>
-                        <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">Study Focus Mix</p>
-                        
                         <div class="time-display">
                             <span id="music-current">0:00</span>
                             <span id="music-total">0:00</span>
                         </div>
-                        
-                        <div class="progress-seek" id="music-progress-bar">
+                        <div class="progress-seek" id="music-seek">
                             <div class="progress-fill" id="music-progress"></div>
                         </div>
-                        
                         <div class="player-controls">
-                            <button class="player-btn" onclick="APP.prevTrack()">
-                                <i class="fa fa-step-backward"></i>
-                            </button>
-                            <button class="player-btn play-btn" id="play-pause-btn" onclick="APP.togglePlay()">
-                                <i class="fa fa-play"></i>
-                            </button>
-                            <button class="player-btn" onclick="APP.nextTrack()">
-                                <i class="fa fa-step-forward"></i>
-                            </button>
+                            <button class="player-btn" id="prev-btn"><i class="fa fa-step-backward"></i></button>
+                            <button class="player-btn play-btn" id="play-pause-btn"><i class="fa fa-play"></i></button>
+                            <button class="player-btn" id="next-btn"><i class="fa fa-step-forward"></i></button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Upload Section (Locked) -->
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title"><i class="fa fa-upload"></i> Upload Song</h2>
-                        <span style="background: var(--warning); color: #000; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700;">
-                            <i class="fa fa-lock"></i> PREMIUM
-                        </span>
+                        <h2 class="card-title"><i class="fa fa-list"></i> Playlist</h2>
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                            <input type="file" id="music-upload" accept="audio/*" style="display: none;">
+                            <button class="btn btn-sm btn-secondary" id="upload-btn" disabled>
+                                <i class="fa fa-upload"></i> Upload Song
+                            </button>
+                        </div>
                     </div>
-                    <div style="text-align: center; padding: 40px 20px; background: var(--bg-dark); border-radius: var(--radius-sm); border: 2px dashed var(--border); cursor: not-allowed;" onclick="APP.showPremiumPopup('upload')">
-                        <i class="fa fa-lock" style="font-size: 48px; color: var(--warning); margin-bottom: 16px;"></i>
-                        <h3 style="margin-bottom: 8px; color: var(--text-main);">Upload Locked</h3>
-                        <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">Upgrade to premium to upload your own study music</p>
-                        <button class="btn btn-primary" onclick="APP.showPremiumPopup('upload'); event.stopPropagation();">
-                            <i class="fa fa-gem"></i> Upgrade to Premium
-                        </button>
+                    <div id="music-playlist" class="task-list">
+                        <!-- Playlist items will be rendered here -->
                     </div>
-                    <input type="file" id="music-upload" accept="audio/*" style="display: none;" disabled>
-                </div>
-            </div>
-
-            <!-- Playlist -->
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title"><i class="fa fa-list-music"></i> Playlist</h2>
-                    <span style="color: var(--text-muted); font-size: 13px;">5 songs available</span>
-                </div>
-                <div id="music-playlist" class="task-list">
-                    <!-- Playlist items will be rendered here -->
                 </div>
             </div>
 
             <footer class="site-footer">
-                <p>Powered by <a href="contact.html">DC</a> | Made in Sri Lanka 🇱</p>
+                Powered by <a href="contact.html">DC</a> | Made in Sri Lanka 🇱🇰
             </footer>
         </main>
     </div>
 
-    <div class="overlay" id="overlay"></div>
-    
-    <!-- Premium Popup Modal -->
-    <div class="modal" id="premium-modal">
-        <div style="text-align: center;">
-            <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="Premium" style="width: 80px; height: 80px; margin-bottom: 16px;">
-            <h2 style="margin-bottom: 12px; color: var(--primary-light);">Premium Feature</h2>
-            <p id="premium-feature-text" style="color: var(--text-muted); margin-bottom: 20px; font-size: 14px;">Upload unlimited songs and create your perfect study playlist!</p>
-            <div style="display: flex; gap: 12px; justify-content: center;">
-                <button class="btn btn-secondary" onclick="APP.closePremiumPopup()">Later</button>
-                <a href="premium.html" class="btn btn-primary">Upgrade Now</a>
-            </div>
+    <!-- Premium Popup -->
+    <div class="premium-popup-overlay" id="premium-popup">
+        <div class="premium-popup">
+            <img src="https://i.postimg.cc/nrFwN8kn/gem.png" alt="Premium" class="premium-popup-img">
+            <h2>Unlock Premium Features</h2>
+            <p>Upload your own songs, access exclusive playlists, and enjoy ad-free music streaming!</p>
+            <a href="premium.html" class="btn btn-primary btn-lg">Upgrade Now</a>
         </div>
+    </div>
+
+    <div id="notification-toast" class="notification">
+        <i class="fa fa-check-circle"></i>
+        <span>Notification</span>
     </div>
 
     <script src="script.js"></script>
     <script>
-        // Premium popup functions
-        APP.showPremiumPopup = function(feature) {
-            const texts = {
-                'upload': 'Upload unlimited songs and create your perfect study playlist!',
-                'default': 'This feature is only available for premium members.'
-            };
-            document.getElementById('premium-feature-text').textContent = texts[feature] || texts.default;
-            document.getElementById('premium-modal').classList.add('show');
-            document.getElementById('overlay').classList.add('show');
-        };
-        
-        APP.closePremiumPopup = function() {
-            document.getElementById('premium-modal').classList.remove('show');
-            document.getElementById('overlay').classList.remove('show');
-        };
-        
-        // Close modal on overlay click
-        document.getElementById('overlay').addEventListener('click', APP.closePremiumPopup);
-        
-        // Music player functions
-        APP.audio = new Audio();
-        APP.playlist = [
-            { n: 'Relax 1', s: 'song1.mp3' },
-            { n: 'Relax 2', s: 'song2.mp3' },
-            { n: 'Relax 3', s: 'song3.mp3' },
-            { n: 'Relax 4', s: 'song4.mp3' },
-            { n: 'Relax 5', s: 'song5.mp3' }
-        ];
-        APP.track = 0;
-        APP.playing = false;
-        
-        APP.renderPlaylist = function() {
-            document.getElementById('music-playlist').innerHTML = APP.playlist.map((t, i) => `
-                <div class="playlist-item ${i === APP.track ? 'active' : ''}" onclick="APP.playTrack(${i})">
-                    <div class="playlist-num">${i + 1}</div>
-                    <div class="playlist-info">
-                        <div class="playlist-name">${t.n}</div>
-                        <div class="playlist-duration"><i class="fa fa-music"></i> Ready</div>
-                    </div>
-                    <i class="fa fa-play" style="color: var(--primary)"></i>
-                </div>
-            `).join('');
-        };
-        
-        APP.playTrack = function(i) {
-            APP.track = i;
-            // For demo, we'll just update UI
-            document.getElementById('music-title').textContent = APP.playlist[i].n;
-            APP.renderPlaylist();
-        };
-        
-        APP.togglePlay = function() {
-            APP.playing = !APP.playing;
-            const btn = document.getElementById('play-pause-btn');
-            btn.innerHTML = APP.playing ? '<i class="fa fa-pause"></i>' : '<i class="fa fa-play"></i>';
-        };
-        
-        APP.prevTrack = function() {
-            APP.track = (APP.track - 1 + APP.playlist.length) % APP.playlist.length;
-            APP.playTrack(APP.track);
-        };
-        
-        APP.nextTrack = function() {
-            APP.track = (APP.track + 1) % APP.playlist.length;
-            APP.playTrack(APP.track);
-        };
-        
-        // Initialize
-        APP.renderPlaylist();
+        // Premium features lock logic for music
+        document.addEventListener('DOMContentLoaded', function() {
+            const isPremium = localStorage.getItem('learny_premium') === 'true';
+            
+            if (!isPremium) {
+                // Disable upload button
+                const uploadBtn = document.getElementById('upload-btn');
+                const fileInput = document.getElementById('music-upload');
+                
+                uploadBtn.disabled = true;
+                uploadBtn.style.cursor = 'not-allowed';
+                uploadBtn.style.opacity = '0.5';
+                
+                // Show premium popup when clicking upload
+                uploadBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.getElementById('premium-popup').classList.add('show');
+                });
+                
+                // Also prevent file input
+                fileInput.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.getElementById('premium-popup').classList.add('show');
+                });
+                
+                // Premium gem button
+                document.getElementById('premium-gem-music').addEventListener('click', function() {
+                    document.getElementById('premium-popup').classList.add('show');
+                });
+            }
+            
+            // Close popup on overlay click
+            document.querySelector('.premium-popup-overlay').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('show');
+                }
+            });
+        });
     </script>
 </body>
 </html>
